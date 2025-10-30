@@ -1,32 +1,24 @@
-import { useContext, useState } from 'react'
-import './Input.css'
+import { useContext } from 'react'
+import './SearchInput.css'
 import PathContext from '../store/path-context-creator'
 
-export default function SearhInput({props}) {
-  const [isOpen, setIsOpen] = useState(false);
-  const {path, setPath, files} = useContext(PathContext);
-
-  let suggestions = files.folders.map(folder => folder.name);
-
-  const filtered = suggestions.filter((item) =>
-    item.toLowerCase().includes(path.toLowerCase())
-  );
+export default function SearhInput({...props}) {
+  const {path, setPath, setCurrentPath} = useContext(PathContext);
+  function handleChange(e) {
+    setPath(e.target.value)
+    setTimeout(() => {
+      setCurrentPath(e.target.value)
+    }, 1000);
+  }
   return (
     <>
       <input
         value={path} 
-        onChange={(e) => setPath(e.target.value)} 
+        onChange={(e) => handleChange(e)} 
         className='search-input' 
         {...props} 
         type="text"
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setIsOpen(false)}
       />
-      {isOpen && (<div>
-        {filtered.map((folder => <button>
-          {folder.name}
-        </button>))}
-      </div>)}
     </>
   )
 }

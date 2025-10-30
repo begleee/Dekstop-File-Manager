@@ -1,20 +1,32 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Main from './components/Main'
 import PathContext from './store/path-context-creator.js'
 import SearhInput from './components/SearchInput'
+import Dropdown from './components/Dropdown.jsx';
 
 function App() {
-  const { files } = useContext(PathContext);
+  const [isFocus, setIsFocus] = useState(false);
+  const { files, path, currentPath } = useContext(PathContext);
+
+  let suggestions = files.folders.map(folder => folder.name);
+  
+  const filteredFolders = suggestions.filter((folder) =>
+    (currentPath + folder).toLowerCase().startsWith(path.toLowerCase())
+  );
+
   return (
     <div style={{
       padding: '2rem',
     }}>
-      <form style={{padding: '1rem'}}>
-        <SearhInput
+      <details open={isFocus} style={{margin: '1rem', position: 'relative'}}>
+        <summary style={{listStyle: 'none'}}><SearhInput
           className="search-input"
           placeholder="Enter folder path..."
-        />
-      </form>
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setTimeout(() => setIsFocus(false), 500) }
+        /></summary>
+        <Dropdown folders={filteredFolders}/>
+      </details>
       <Main items={files}/>
     </div>
   )

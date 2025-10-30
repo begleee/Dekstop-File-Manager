@@ -6,10 +6,12 @@
     border-radius: 2px;
     padding: 0 12px;
     font-size: .9rem;
-    transition: 225ms;
 }
 
-.input:focus {
-    outline: none;
-    border: 1px solid rgb(21, 105, 183);
+.search-input:focus {
+    outline: 1px solid rgb(21, 105, 183);
+}
+
+.search-input:hover {
+    outline: 1px solid rgb(21, 105, 183);
 }

@@ -4,6 +4,7 @@ import PathContext from "./path-context-creator";
 export default function PathProvider({ children, initialPath }) {
     const [path, setPath] = useState(initialPath);
     const [files, setFiles] = useState({ folders: [], documents: []});
+    const [currentPath, setCurrentPath] = useState(initialPath);
 
     const loadFiles = async (newPath) => {
         const result = await window.api.getFiles(newPath);
@@ -14,8 +15,8 @@ export default function PathProvider({ children, initialPath }) {
     }
 
     useEffect(() => {
-        loadFiles(path);
-    }, [path]);
+        loadFiles(currentPath);
+    }, [currentPath]);
 
     const handleClick = async (file) => {
         const fullPath = `${path}\\${file.name}`;
@@ -35,7 +36,9 @@ export default function PathProvider({ children, initialPath }) {
                     loadFiles,
                     handleClick,
                     setPath,
-                    setFiles
+                    setFiles,
+                    currentPath,
+                    setCurrentPath
                 }
             }
         >
