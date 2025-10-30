@@ -1,37 +1,43 @@
+import FolderIcon from "../assets/icons/folderIcon";
 import Button from "./Button";
+import fileIcon from '../assets/icons/file.png'
+
 
 export default function Main({ items }) {
   const formatSize = (size) => (size ? `${(size / 1024).toFixed(1)} KB` : "");
-
   return (
-    <div style={{padding: '2rem'}}>
+    <div style={{paddingInline: '1rem'}}>
       <ul>
         <ul>
-          <h4 style={{padding: '1rem'}}>Documents</h4>
+          <h5 style={{padding: '.4rem'}}>Documents</h5>
           {items.documents.map(doc =>(
             <li key={doc.name}>
-              <Button fileType={"document"}>
-                <span style={{ width: "24px" }}>📄</span>
+              <Button>
+                <span>
+                  <img style={{width: "1rem"}} src={fileIcon} alt="" />
+                </span>
                 <span style={{ flex: 1 }}>{doc.name}</span>
                 <span style={{ width: "100px", textAlign: "right" }}>
                   {formatSize(doc.size)}
                 </span>
                 <span style={{ width: "120px", textAlign: "right" }}>
-                  {doc.modified.toLocaleString()}
+                  {doc.modified.toLocaleDateString()}
                 </span>
               </Button>
             </li>
           ))}
         </ul>
         <ul>
-          <h4 style={{padding: '1rem'}}>Files</h4>
+          <h5 style={{padding: '.4rem'}}>Folders</h5>
           {items.folders.map(folder => (
             <li key={folder.name}>
-              <Button fileType={"folder"}>
-                <span style={{ width: "24px" }}>📁</span>
+              <Button>
+                <span>
+                  <FolderIcon width="1rem" height="1rem"/>
+                </span>
                 <span style={{ flex: 1 }}>{folder.name}</span>
                 <span style={{ width: "120px", textAlign: "right" }}>
-                  {folder.modified.toLocaleString()}
+                  {folder.modified.toLocaleDateString()}
                 </span>
               </Button>
             </li>

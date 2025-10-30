@@ -1,6 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-
-export const PathContext = createContext();
+import { useEffect, useState } from "react";
+import PathContext from "./path-context-creator";
 
 export default function PathProvider({ children, initialPath }) {
     const [path, setPath] = useState(initialPath);
