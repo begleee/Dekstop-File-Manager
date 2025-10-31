@@ -12,7 +12,7 @@ export default function Main({ items }) {
           <h5 style={{padding: '.4rem'}}>Documents</h5>
           {items.documents.map(doc =>(
             <li key={doc.name}>
-              <Button>
+              <Button docName={doc.name} fileType="doc">
                 <span>
                   <img style={{width: "1rem"}} src={fileIcon} alt="" />
                 </span>
@@ -31,7 +31,7 @@ export default function Main({ items }) {
           <h5 style={{padding: '.4rem'}}>Folders</h5>
           {items.folders.map(folder => (
             <li key={folder.name}>
-              <Button>
+              <Button folderName={folder.name}>
                 <span>
                   <FolderIcon width="1rem" height="1rem"/>
                 </span>

@@ -19,7 +19,8 @@ function App() {
       padding: '2rem',
     }}>
       <details open={isFocus} style={{margin: '1rem', position: 'relative'}}>
-        <summary style={{listStyle: 'none'}}><SearhInput
+        <summary style={{listStyle: 'none', display: 'flex'}}>
+          <SearhInput
           className="search-input"
           placeholder="Enter folder path..."
           onFocus={() => setIsFocus(true)}

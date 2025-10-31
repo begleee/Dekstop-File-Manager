@@ -18,13 +18,10 @@ export default function PathProvider({ children, initialPath }) {
         loadFiles(currentPath);
     }, [currentPath]);
 
-    const handleClick = async (file) => {
-        const fullPath = `${path}\\${file.name}`;
-        if(file.type === "folder") {
-            loadFiles(fullPath);
-        } else {
-            await window.api.openFile(fullPath);
-        }
+    const handleClick = async (docName) => {
+        const fullPath = `${path}\\${docName}`;
+        console.log(fullPath);
+        await window.api.openFile(fullPath);
     }
 
     return (

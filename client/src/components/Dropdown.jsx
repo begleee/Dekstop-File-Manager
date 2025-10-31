@@ -4,12 +4,10 @@ import PathContext from '../store/path-context-creator';
 
 export default function Dropdown({folders}) {
     const {currentPath,setPath, setCurrentPath} = useContext(PathContext);
-    console.log(currentPath)
     function handleClick(folder,e) {
         e.preventDefault();
-        setPath(currentPath + folder);
-        setCurrentPath(currentPath + folder);
-        console.log(folder);
+        setPath(currentPath + folder + "\\");
+        setCurrentPath(currentPath + folder + "\\");
     }
   return (
     <ul className="dropdown-container">
